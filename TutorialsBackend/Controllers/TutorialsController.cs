@@ -49,6 +49,16 @@ namespace TutorialsBackend.Controllers
         public List<Tutorial> GetTutorialsList()
             => _tutorials;
 
+        [HttpDelete("{id}")]
+        public void DeleteTutorialById(int id)
+        {
+            var item = _tutorials.FirstOrDefault(x => x.Id == id);
+            if(item != null)
+            {
+                _tutorials.Remove(item);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<Tutorial> GetTutorialAsync(int id)
             => _tutorials.FirstOrDefault(x => x.Id == id);
